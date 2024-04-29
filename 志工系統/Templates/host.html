@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>志工系統</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h2 {
+            color: #333;
+            text-align: center;
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .nav-links a {
+            color: #f2eaea;
+            text-decoration: none;
+            padding: 10px;
+            margin: 0 10px;
+            border-radius: 4px;
+            background-color: #d2b48c; /* 淺咖啡色 */
+            transition: background-color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            background-color: #b8860b; /* 較深的咖啡色 */
+        }
+
+        .logout-link {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .logout-link a {
+            color: #666;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <h2>志工系統</h2>
+    <div class="nav-links">
+        <a href="http://127.0.0.1:3000/data">志工資料</a>
+        <a href="http://127.0.0.1:3000/holiday">國定假日</a>
+        <a href="http://127.0.0.1:3000/sign">出勤異動</a>
+        <a href="http://127.0.0.1:3000/count">時數總表</a>
+    </div>
+    <div class="logout-link">
+        <a href="/">登出</a>
+    </div>
+</body>
+</html>

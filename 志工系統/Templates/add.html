@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新增志工資料</title>
+</head>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f5f5f5;
+        margin: 0;
+        padding: 20px;
+    }
+
+    h2 {
+        color: #333;
+        text-align: center;
+    }
+
+    .form-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+    }
+
+    form {
+        margin-top: 30px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: flex-start;
+    }
+
+    label {
+        margin-top: 10px;
+        font-weight: bold;
+        width: 150px;
+        text-align: right;
+    }
+
+    input[type="text"],
+    input[type="date"] {
+        padding: 8px;
+        margin: 5px;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+        width: 200px;
+    }
+
+    .buttons-container {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    button {
+        padding: 10px 20px;
+        margin: 0 10px;
+        border: none;
+        border-radius: 4px;
+        background-color: #333;
+        color: #fff;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+        background-color: #555;
+    }
+
+    a.button {
+        padding: 10px 20px;
+        margin: 0 10px;
+        border: none;
+        border-radius: 4px;
+        background-color: #333;
+        color: #fff;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        text-decoration: none;
+    }
+
+    a.button:hover {
+        background-color: #555;
+    }
+</style>
+<body>
+    <div class="form-container">
+        <h2>新增志工資料</h2>
+        <form action="/add1" method="POST">
+            <table>
+                <tr>
+                    <td><label>志工號(入隊日期ex891011):</label></td>
+                    <td><input type="text" name="number" required></td>
+                    <td><label>姓名:</label></td>
+                    <td><input type="text" name="volname" required></td>
+                </tr>
+                <tr>
+                    <td><label>性別:</label></td>
+                    <td><input type="text" name="sex" required></td>
+                    <td><label >入隊日期:</label></td>
+                    <td><input type="date" name="inday" required></td>
+                </tr>
+                <tr>
+                    <td><label >生日:</label></td>
+                    <td><input type="date" id="birth-input" name="birth" required></td>
+                    <td><label for="indentyid-input">身分證字號:</label></td>
+                    <td><input type="text" name="indentyid" required></td>
+                </tr>
+                <tr>
+                    <td><label>電話:</label></td>
+                    <td><input type="text" name="phone" required></td>
+                    <td><label>手機:</label></td>
+                    <td><input type="text" name="cell" required></td>
+                </tr>
+                <tr>
+                    <td><label >緊急聯絡人:</label></td>
+                    <td><input type="text"  name="enman" required></td>
+                    <td><label >聯絡人電話:</label></td>
+                    <td><input type="text"  name="enmanphone" required></td>
+                </tr>
+                <tr>
+                    <td><label >地址:</label></td>
+                    <td><input type="text"  name="address" required></td>
+                    <td><label >信箱:</label></td>
+                    <td><input type="text"  name="email" required></td>
+                </tr>
+                <tr>
+                    <td><label >排班日:</label></td>
+                    <td><select name="workday">
+                        <option value=1>星期一</option>
+                        <option value=2>星期二</option>
+                        <option value=3>星期三</option>
+                        <option value=4>星期四</option>
+                        <option value=5>星期五</option>
+                        <option value=6>星期六</option>
+                        <option value=7>星期日</option></td>
+                    <td><select name="workday1">
+                        <option value=0>無</option>
+                        <option value=1>星期一</option>
+                        <option value=2>星期二</option>
+                        <option value=3>星期三</option>
+                        <option value=4>星期四</option>
+                        <option value=5>星期五</option>
+                        <option value=6>星期六</option>
+                        <option value=7>星期日</option></td>
+                </tr>
+            </table>
+            <div class="buttons-container">
+                <button class="button">送出</button>
+                <a href="/data" class="button">返回</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

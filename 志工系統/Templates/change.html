@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>志工資料</title>
+</head>
+<style>
+    h2 {
+        color: #333;
+        text-align: center;
+    }
+
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        margin-top: 30px;
+    }
+
+    th, td {
+        border: 1px solid black;
+        padding: 8px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+
+    .buttons {
+        margin-top: 15px;
+        margin-bottom: 10px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .buttons a, button {
+        color: #fff;
+        text-decoration: none;
+        padding: 10px 20px;
+        margin: 0 10px;
+        border-radius: 4px;
+        background-color: #c5bebe;
+        transition: background-color 0.3s ease;
+        border: none; /* 移除按鈕的外框 */
+        outline: none; /* 移除按鈕的外框 */
+    }
+
+    .buttons a:hover, button:hover {
+        background-color: #555;
+    }
+
+</style>
+<body>
+    <h2>志工資料</h2>    
+        <div class="buttons">
+             <a href="/data">返回</a>
+        </div>
+        <table>
+            <tr>
+                <th>志工編號</th>
+                <th>姓名</th>
+                <th>性別</th>
+                <th>入隊日期</th>
+                <th>出生日期</th>
+                <th>年齡</th>
+                <th>年資</th>
+                <th>身分證字號</th>
+                <th>電話</th>
+                <th>手機</th>
+                <th>緊急聯絡人</th>
+                <th>聯絡人電話</th>
+                <th>地址</th>
+                <th>信箱</th>
+                <th>排班日</th>
+                <th></th>
+                <th></th>
+            </tr>
+            {% for row in data %}
+            <tr><form class="update-form" action="/update" method="POST">
+                <td>{{ row[0] }}</td>
+                <td>{{ row[1] }}</td>
+                <td><input type="text" name="sex"value="{{ row[2] }}"></td>
+                <td><input type="date" name="inday" value="{{ row[3] }}"></td>
+                <td><input type="date" name="birth" value="{{ row[4] }}"></td>
+                <td>自動顯示</td>
+                <td>自動顯示</td>
+                <td><input type="text" name="indentyid" value="{{ row[7] }}"></td>
+                <td><input type="text" name="cell" value="{{ row[8] }}"></td>
+                <td><input type="text" name="phone" value="{{ row[9] }}"></td>
+                <td><input type="text" name="enman" value="{{ row[10] }}"></td>
+                <td><input type="text" name="enmanphone" value="{{ row[11] }}"></td>
+                <td><input type="text" name="address" value="{{ row[12] }}"></td>
+                <td><input type="text" name="email" value="{{ row[13] }}"></td>
+                <td>
+                    星期：<input type="text" name="workday" value="{{ row[14] }}">
+                    <br>
+                    星期：<input type="text" name="workday1" value="{{ row[15] }}">
+                </td>
+                <td>
+                    
+                        <input type="hidden" name="number" value="{{ row[0] }}">
+                        <input type="hidden" name="volname" value="{{ row[1] }}">
+                        <button type="submit" name="update">更新</button>
+                    </form>
+                </td>
+                <td>
+                    <form class="delete-form" action="/delete" method="POST">
+                        <input type="hidden" name="volname" value="{{ row[1] }}">
+                        <button type="submit" name="delete">刪除</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+</body>
+</html>

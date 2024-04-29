@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>志工資料</title>
+</head>
+<style>
+    h2 {
+        color: #333;
+        text-align: center;
+    }
+
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        margin-top: 30px;
+    }
+
+    th, td {
+        border: 1px solid black;
+        padding: 8px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+
+    .buttons {
+        margin-top: 30px;
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .buttons a {
+        color: #fff;
+        text-decoration: none;
+        padding: 10px 20px;
+        margin: 0 10px;
+        border-radius: 4px;
+        background-color: #c5bebe;
+        transition: background-color 0.3s ease;
+    }
+
+    .buttons a:hover {
+        background-color: #555;
+    }
+
+</style>
+<body>
+    <h2>志工資料</h2>     
+    <div class="buttons">
+        <a href="/add">新增資料</a>
+        <a href="/change">更動資料</a>
+        <a href="/host">返回</a>
+    </div>
+        <table>
+            <tr>
+                <th>志工編號</th>
+                <th>姓名</th>
+                <th>性別</th>
+                <th>入隊日期</th>
+                <th>出生日期</th>
+                <th>年齡</th>
+                <th>年資</th>
+                <th>身分證字號</th>
+                <th>電話</th>
+                <th>手機</th>
+                <th>緊急聯絡人</th>
+                <th>聯絡人電話</th>
+                <th>地址</th>
+                <th>信箱</th>
+                <th>排班日</th>
+            </tr>
+            {% for row in data %}
+            <tr>
+                <td>{{ row[0] }}</td>
+                <td>{{ row[1] }}</td>
+                <td>{{ row[2] }}</td>
+                <td>{{ row[3] }}</td>
+                <td>{{ row[4] }}</td>
+                <td id="age-{{ row[0] }}"></td>
+                <td id="yearin-{{ row[0] }}"></td>
+                <td>{{ row[7] }}</td>
+                <td>{{ row[8] }}</td>
+                <td>{{ row[9] }}</td>
+                <td>{{ row[10] }}</td>
+                <td>{{ row[11] }}</td>
+                <td>{{ row[12] }}</td>
+                <td>{{ row[13] }}</td>
+                <td>星期{{ row[14] }}<br>星期{{ row[15] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+    <script>
+        // 取得今天的日期
+        var currentDate = new Date();   
+        {% for row in data %}
+            // 取得出生日期
+            var birthDate = new Date('{{ row[4] }}');
+            
+            // 計算年齡
+            var age = currentDate.getFullYear() - birthDate.getFullYear();
+            var monthDiff = currentDate.getMonth() - birthDate.getMonth();
+            if (monthDiff < 0 || (monthDiff === 0 && currentDate.getDate() < birthDate.getDate())) {
+                age--;
+            }
+            
+            // 計算年資
+            var inday = new Date('{{ row[3] }}');
+            var yearIn = currentDate.getFullYear() - inday.getFullYear();
+            var monthDiff2 = currentDate.getMonth() - inday.getMonth();
+            if (monthDiff2 < 0 || (monthDiff2 === 0 && currentDate.getDate() < inday.getDate())) {
+                yearIn--;
+            }
+            
+            // 將年齡和年資填入對應的欄位
+            var ageCell = document.getElementById('age-{{ row[0] }}');
+            ageCell.textContent = age;
+            
+            var yearInCell = document.getElementById('yearin-{{ row[0] }}');
+            yearInCell.textContent = yearIn;
+        {% endfor %}
+    </script>
+</body>
+</html>
